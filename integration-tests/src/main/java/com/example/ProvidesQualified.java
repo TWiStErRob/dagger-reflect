@@ -5,8 +5,8 @@ import dagger.Module;
 import dagger.Provides;
 import javax.inject.Qualifier;
 
-@Component(modules = ComponentProviderQualified.Module1.class)
-interface ComponentProviderQualified {
+@Component(modules = ProvidesQualified.Module1.class)
+interface ProvidesQualified {
   @Foo String string();
 
   @Module

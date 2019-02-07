@@ -4,8 +4,8 @@ import dagger.Component;
 import dagger.Module;
 import dagger.Provides;
 
-@Component(modules = StaticProvider.Module1.class)
-interface StaticProvider {
+@Component(modules = ProvidesStatic.Module1.class)
+interface ProvidesStatic {
   String string();
 
   @Module

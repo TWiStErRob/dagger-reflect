@@ -23,19 +23,44 @@ public final class IntegrationTest {
 
   @Parameter public Backend backend;
 
-  @Test public void componentProvider() {
-    ComponentProvider component = backend.create(ComponentProvider.class);
+  @Test public void providesStatic() {
+    ProvidesStatic component = backend.create(ProvidesStatic.class);
     assertThat(component.string()).isEqualTo("foo");
   }
 
-  @Test public void componentProviderQualified() {
-    ComponentProviderQualified component = backend.create(ComponentProviderQualified.class);
+  @Test public void providesInstance() {
+    ignoreReflectionBackend(); // auto module creation is not implemented yet
+
+    ProvidesInstance component = backend.create(ProvidesInstance.class);
     assertThat(component.string()).isEqualTo("foo");
   }
 
-  @Test public void staticProvider() {
-    StaticProvider component = backend.create(StaticProvider.class);
+  @Test public void providesQualified() {
+    ProvidesQualified component = backend.create(ProvidesQualified.class);
     assertThat(component.string()).isEqualTo("foo");
+  }
+
+  @Test public void providesNull() {
+    ignoreReflectionBackend();
+
+    ProvidesNull component = backend.create(ProvidesNull.class);
+    try {
+      component.string();
+      fail();
+    } catch (NullPointerException e) {
+      assertThat(e).hasMessageThat()
+          .startsWith("Cannot return null from a non-@Nullable @Provides method");
+    }
+  }
+
+  @Test public void providesNullable() {
+    ProvidesNullable component = backend.create(ProvidesNullable.class);
+    assertThat(component.string()).isNull();
+  }
+
+  @Test public void providesSimpleDependency() {
+    ProvidesSimpleDependency component = backend.create(ProvidesSimpleDependency.class);
+    assertThat(component.string()).isEqualTo("foo42");
   }
 
   @Test public void bindsProvider() {

@@ -4,13 +4,13 @@ import dagger.Component;
 import dagger.Module;
 import dagger.Provides;
 
-@Component(modules = ComponentProvider.Module1.class)
-interface ComponentProvider {
+@Component(modules = ProvidesInstance.Module1.class)
+interface ProvidesInstance {
   String string();
 
   @Module
-  abstract class Module1 {
-    @Provides static String string() {
+  class Module1 {
+    @Provides String string() {
       return "foo";
     }
   }
