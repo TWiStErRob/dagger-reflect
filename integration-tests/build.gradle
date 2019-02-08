@@ -1,10 +1,14 @@
 apply plugin: 'java-library'
 
 dependencies {
+  implementation project( ':integration-tests:providers')
+  implementation project( ':integration-tests:multibinding')
+  implementation project( ':integration-tests:memberinjection')
+  implementation project( ':integration-tests:modules')
+
   implementation deps.dagger.runtime
   implementation deps.jetbrainsAnnotations
   implementation deps.guava
-  annotationProcessor deps.dagger.compiler
 
   testImplementation deps.junit
   testImplementation deps.truth

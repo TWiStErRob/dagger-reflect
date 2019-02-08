@@ -1,4 +1,8 @@
 include ':codegen'
 include ':integration-tests'
+include ':integration-tests:providers'
+include ':integration-tests:multibinding'
+include ':integration-tests:memberinjection'
+include ':integration-tests:modules'
 include ':reflect'
 include ':reflect-compiler'
