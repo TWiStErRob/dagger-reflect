@@ -5,4 +5,6 @@ dependencies {
   implementation deps.jetbrainsAnnotations
   implementation deps.guava
   annotationProcessor deps.dagger.compiler
+
+  testImplementation project( ':integration-tests')
 }

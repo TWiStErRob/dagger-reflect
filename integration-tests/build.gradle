@@ -1,17 +1,8 @@
 apply plugin: 'java-library'
 
 dependencies {
-  implementation project( ':integration-tests:providers')
-  implementation project( ':integration-tests:multibinding')
-  implementation project( ':integration-tests:memberinjection')
-  implementation project( ':integration-tests:modules')
-
-  implementation deps.dagger.runtime
-  implementation deps.jetbrainsAnnotations
-  implementation deps.guava
-
-  testImplementation deps.junit
-  testImplementation deps.truth
-  testImplementation project(':reflect')
-  testImplementation project(':codegen')
+  api deps.junit
+  api deps.truth
+  api project(':reflect')
+  api project(':codegen')
 }

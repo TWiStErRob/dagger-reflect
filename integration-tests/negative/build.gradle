@@ -4,7 +4,8 @@ dependencies {
   implementation deps.dagger.runtime
   implementation deps.jetbrainsAnnotations
   implementation deps.guava
-  annotationProcessor deps.dagger.compiler
+  // can't process all code would fail to compile
+  //annotationProcessor deps.dagger.compiler
 
   testImplementation project( ':integration-tests')
 }
