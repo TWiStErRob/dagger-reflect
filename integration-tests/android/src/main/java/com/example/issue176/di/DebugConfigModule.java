@@ -6,7 +6,7 @@ import dagger.Binds;
 import dagger.Module;
 
 @Module(includes = {AndroidApplicationModule.class})
-abstract class DebugConfigModule
+public abstract class DebugConfigModule
 {
   @Binds
   abstract DebugConfigContract.Presenter presenter(DebugConfigPresenter presenter);

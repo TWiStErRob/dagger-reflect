@@ -1,11 +1,15 @@
 package com.example;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.TextView;
+import com.example.issue176.DebugConfigContract;
+import com.example.issue176.di.DebugConfigModule;
+import dagger.Binds;
 import dagger.Module;
 import dagger.Provides;
 import dagger.android.AndroidInjection;
@@ -20,6 +24,7 @@ public final class ExampleActivity extends Activity {
   @Inject String string;
   @Inject long aLong;
   @Inject int anInt;
+  @Inject DebugConfigContract.Presenter presenter;
 
   @Override
   protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,8 +43,15 @@ public final class ExampleActivity extends Activity {
 
   @Module
   static abstract class ExampleActivityModule {
-    @ContributesAndroidInjector(modules = LongModule.class)
+    @ContributesAndroidInjector(modules = {LongModule.class, ActivityBinding.class, DebugConfigModule.class})
     abstract ExampleActivity activity();
+
+    @Module
+    interface ActivityBinding {
+
+      @Binds
+      Context context(ExampleActivity activity);
+    }
   }
 
   @Module(includes = IntegerModule.class)
