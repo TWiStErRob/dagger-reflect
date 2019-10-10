@@ -3,6 +3,8 @@ package com.example;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.fail;
 
+import com.example.issue176.DebugConfigContract;
+import com.example.issue176.di.Issue176;
 import dagger.Lazy;
 import java.util.Map;
 import java.util.Optional;
@@ -17,6 +19,15 @@ import org.junit.runners.Parameterized.Parameters;
 
 @RunWith(Parameterized.class)
 public final class IntegrationTest {
+
+
+  @Test public void issue176() {
+    Issue176 component = backend.create(Issue176.class);
+    DebugConfigContract.Presenter presenter = component.presenter();
+    assertThat(presenter).isNotNull();
+  }
+
+
   @Parameters(name = "{0}")
   public static Object[] parameters() {
     return Backend.values();
