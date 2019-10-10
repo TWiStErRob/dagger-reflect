@@ -3,6 +3,7 @@ package com.example;
 import static com.google.common.truth.Truth.assertThat;
 import static org.junit.Assert.fail;
 
+import android.content.Context;
 import com.example.issue176.DebugConfigContract;
 import com.example.issue176.di.Issue176;
 import dagger.Lazy;
@@ -22,7 +23,7 @@ public final class IntegrationTest {
 
 
   @Test public void issue176() {
-    Issue176 component = backend.create(Issue176.class);
+    Issue176 component = backend.builder(Issue176.Builder.class).context(new Context()).build();
     DebugConfigContract.Presenter presenter = component.presenter();
     assertThat(presenter).isNotNull();
   }
